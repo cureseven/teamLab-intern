@@ -64,13 +64,13 @@ class ProductController < ApplicationController
             @image.save
             @product[:image_id] = @image[:id]
             
+        end
+        
+        @product.save
+        
+        redirect_to "/product/show/" + @product[:id].to_s
+        
     end
-    
-    @product.save
-    
-    redirect_to "/product/show" + @product[:id].to_s
-    
-end
     
     def delete
         

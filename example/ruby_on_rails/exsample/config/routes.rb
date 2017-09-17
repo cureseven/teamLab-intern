@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   #get 'product_picture/show'
   
   # ??
-  #patch 'product/create'
-  patch 'product/update'
+  patch 'product/create' => "product#create"
+  patch 'product/update' => "product#update"
 end

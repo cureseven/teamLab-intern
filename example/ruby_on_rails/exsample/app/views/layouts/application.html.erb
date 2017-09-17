@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>teamLab ECshop</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body>
+    
+    
+    <div class="jumbotron">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample8">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+                    <a class="navbar-brand" href="http://ec2-18-220-5-204.us-east-2.compute.amazonaws.com:8080/product/list">
+				teamLab ECshop by @cureseven
+			</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarEexample8">
+                    <ul class="nav navbar-nav">
+                        <li><a href="./new">商品を登録</a></li>
+                    </ul>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+</div>
+
+
+    <%= yield %>
+    <p>CLUDメモ</p>
+    <p>登録の実装完了</p>
+    <p>削除の実装完了</p>
+    <p>変更</p>
+    <p>検索</p>
+
+  </body>
+</html>

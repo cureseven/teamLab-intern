@@ -1,0 +1,70 @@
+<div class="container-fluid" style="margin-top:3em;">
+    
+    <div class="row">
+        
+        <div class="col-sm-8 col-sm-offset-2">
+            
+            <div class="">
+              <table class="table table-striped ">
+                <tr>
+                  <th>店舗ID</th>
+                  <th>店舗名</th>
+                  <th>電話番号</th>
+                  <th>イメージ</th>
+                  <th>作成日時</th>
+                  <th>更新日時</th>　
+                  <th></th>　　
+                  <th></th>　
+                </tr>
+              <% @stores.each do |store| %>
+                <tr>
+                  <td><%= store.id %></td>
+                  <td><%= store.name %></td>
+                  <td><%= store.phone %></td>
+                  <td><%= image_tag("/image/show/#{store[:image_id]}", :class => "img-responsive",:style => "max-height:150px;") %></td>
+                  <td><%= store.created_at %></td>
+                  <td><%= store.updated_at %></td>
+                  <td><a class="btn btn-default" href="/store/edit/<%= store.id %>" role="button">編集</a></td>
+                  <td><a class="btn btn-default" href="/store/delete/<%= store.id %>" role="button">削除</a></a></td>
+                </tr>
+              <% end %>
+              </table>
+              
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+
+<script>
+  
+  // (function(){
+  //   $.ajax({
+  //   type: "GET",
+  //   url: "/store/list_json",
+  //   success: function(result){
+       
+  //     setTimeout(function(){
+                  
+  //       for(var key in  result){
+           
+  //         var store = result[key];
+           
+  //         console.log(store);
+           
+  //         $('.table tr:last').after("<tr><td>" + store.id + "</td><td>" + store.name + "</td><td>" + store.phone + "</td><td>" + store.image_id + "</td><td>" + store.created_at + "</td><td>" + store.updated_at + "</td></tr>");
+           
+  //       }
+         
+  //     }, 3000);
+
+       
+  //   }
+  // });
+    
+  // })();
+  
+</script>

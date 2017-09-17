@@ -10,14 +10,42 @@
         
     </tr>
     <% @products.each do |product| %>
-    <tr>
+    <tr id="product_<%= product.id %>">
         <td><%= product.id %></td>
         <td><%= image_tag("/image/show/#{product[:image_id]}", :class => "img-responsive",:style => "max-height:150px;") %></td>
         <td><%= product.title %></td>
         <td><%= product.description %></td>
         <td><%= product.price %></td>
         <td><a class="btn btn-default" href="/product/edit/<%= product.id %>" role="button">編集</a></td>
-        <td><a class="btn btn-default" href="/product/delete/<%= product.id %>" role="button">削除</a></a></td>
+        <td><button type="button" class="btn btn-default" role="button" data-product-id="<%= product.id %>">削除</button></td>
+        <!--<td><a class="btn btn-default" href="/product/delete/<%= product.id %>" role="button">削除</a></a></td>-->
     </tr>
     <% end %>
 </table>
+<script>
+    
+    (function(){
+        
+        $("button").click(function(e){
+           
+            var productId = $(this).data("product-id");
+           
+            $.ajax({
+                type: 'get',
+                url: '/api/product_delete/' + productId
+            })
+            .done(function(result) {
+                
+                console.log(result);
+                
+                $target = $("tr#product_" + productId);
+                
+                $target.hide('slow', function(){ $target.remove(); });
+                
+            });
+           
+        });
+        
+    })();
+    
+</script>

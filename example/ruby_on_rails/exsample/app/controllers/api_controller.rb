@@ -1,48 +1,19 @@
-class ProductController < ApplicationController
-    def list
-        @products = Product.all
-    end
+class ApiController < ApplicationController
     
-    def show
+    def product_get
         @product_id = params[:id]
         @product = Product.find(@product_id)
         
+        render json: @product
+    end
+    
+    def product_getAll
         @products = Product.all
-        # render json: @products
+        
+        render json: @products
     end
     
-    def new
-        @product = Product.new
-    end  
-    
-    def restnew
-        @product = Product.new
-    end
-    
-    def create
-        @product_data = params[:product]
-        
-        @product = Product.new
-        @product[:title] = @product_data[:title]
-        @product[:description] = @product_data[:description]
-        @product[:price] = @product_data[:price]
-        
-        upload_file = @product_data[:file]
-        
-        image = {}
-        image[:filename] = upload_file.original_filename
-        image[:file] = upload_file.read
-      
-        @image = Image.new(image)
-        @image.save
-        
-        @product[:image_id] = @image[:id]
-        @product.save
-        
-        redirect_to "/product/show/" + @product[:id].to_s
-    end
-    
-    def search
+    def product_search
         
         search_word = params[:search_word]
         
@@ -58,14 +29,41 @@ class ProductController < ApplicationController
             @products = Product.all
         end 
         
+        render json: @products
+        
     end
     
-    def edit
-        product_id = params[:id]
-        @product = Product.find(product_id)
+    def product_create
+        
+        product_data = params[:product]
+        
+        @product = Product.new
+        @product[:title] = product_data[:title]
+        @product[:description] = product_data[:description]
+        @product[:price] = product_data[:price]
+        
+        if product_data[:file] != nil
+            
+            upload_file = product_data[:file]
+            
+            image = {}
+            image[:filename] = upload_file.original_filename
+            image[:file] = upload_file.read
+          
+            @image = Image.new(image)
+            @image.save
+            
+            @product[:image_id] = @image[:id]
+            
+        end
+        
+        @product.save
+        
+        #redirect_to "/product/show/" + @product[:id].to_s
+        render json: @product
     end
     
-    def update
+    def product_update
         
         product_data = params[:product]
         
@@ -94,9 +92,9 @@ class ProductController < ApplicationController
         
     end
     
-    def delete
-        
-        product_id = params[:id]
+    def product_delete
+       
+       product_id = params[:id]
         product = Product.find(product_id)
         
         image_id = product[:image_id]
@@ -104,8 +102,9 @@ class ProductController < ApplicationController
         
         image.destroy
         product.destroy
+       
+        render json: { product_id: product_id}
         
-        redirect_to "/product/list" 
     end
     
 end

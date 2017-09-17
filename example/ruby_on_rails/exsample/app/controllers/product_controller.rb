@@ -60,6 +60,10 @@ class ProductController < ApplicationController
         
     end
     
+    def restsearch
+          @product = Product.new
+    end
+    
     def edit
         product_id = params[:id]
         @product = Product.find(product_id)

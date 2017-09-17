@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'product/edit/:id' => "product#edit"
   
   get 'product/search'
+  get 'product/restsearch'
   
   get 'product/delete/:id' => "product#delete"
   get 'product/delete_async/:id' => "product#delete_async"
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
   
   get 'api/product_get/:id' => "api#product_get"
   get 'api/product_getAll'
-  get 'api/product_search/:search_word' => "api#product_search"
+  post 'api/product_search' => "api#product_search"
   get 'api/product_delete/:id' => "api#product_delete"
   # post 'api/product_create/:title/:description/:price' => "api#product_create"
   post 'api/product_create'

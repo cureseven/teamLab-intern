@@ -7,7 +7,6 @@
             <div class="jumbotron">
                 
              <%= form_tag("/product/search", method: "get") do %>
-                <p>検索するところ</p>
                     <div class="form-group">
                         <label for="product_name">商品名</label>
                         <%= text_field_tag :search_word, params[:search_word] %>

@@ -88,7 +88,7 @@ class ApiController < ApplicationController
         
         @product.save
         
-        redirect_to "/product/show/" + @product[:id].to_s
+        render json: @product
         
     end
     

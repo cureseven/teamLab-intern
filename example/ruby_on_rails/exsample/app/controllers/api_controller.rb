@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
     
+    # 一つの商品情報を取得
     def product_get
         @product_id = params[:id]
         @product = Product.find(@product_id)
@@ -7,12 +8,14 @@ class ApiController < ApplicationController
         render json: @product
     end
     
+    # 全ての商品情報を取得
     def product_getAll
         @products = Product.all
         
         render json: @products
     end
     
+    # 検索
     def product_search
         
         search_word = params[:search_word]
@@ -33,6 +36,7 @@ class ApiController < ApplicationController
         
     end
     
+    # 新規登録
     def product_create
         
         product_data = params[:product]
@@ -63,6 +67,7 @@ class ApiController < ApplicationController
         render json: @product
     end
     
+    # 内容の変更
     def product_update
         
         product_data = params[:product]
@@ -92,6 +97,7 @@ class ApiController < ApplicationController
         
     end
     
+    # 商品を消す
     def product_delete
        
        product_id = params[:id]

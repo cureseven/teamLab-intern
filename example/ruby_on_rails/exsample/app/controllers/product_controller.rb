@@ -1,8 +1,11 @@
+# HTML版API
+
 class ProductController < ApplicationController
+    # 一覧を表示
     def list
         @products = Product.all
     end
-    
+    # :idの商品情報を表示
     def show
         @product_id = params[:id]
         @product = Product.find(@product_id)
@@ -11,14 +14,17 @@ class ProductController < ApplicationController
         # render json: @products
     end
     
+    # 新規登録内容を取得
     def new
         @product = Product.new
     end  
     
+    # RESTful新規登録API
     def restnew
         @product = Product.new
     end
     
+    # 新規登録画面で取得したものをDBに保存
     def create
         @product_data = params[:product]
         
@@ -42,6 +48,7 @@ class ProductController < ApplicationController
         redirect_to "/product/show/" + @product[:id].to_s
     end
     
+    # 検索
     def search
         
         search_word = params[:search_word]
@@ -54,21 +61,24 @@ class ProductController < ApplicationController
         if search_word # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
             @products = Product.where(['title LIKE ?', "%#{search_word}%"])
         else
-            # 検索ワードがなかった場合
+            # 検索ワードがな���った場合
             @products = Product.all
         end 
         
     end
     
+    # RESTful検索API
     def restsearch
           @product = Product.new
     end
     
+    # 内容の変更情報を取得
     def edit
         product_id = params[:id]
         @product = Product.find(product_id)
     end
     
+    # editの情報でDBを更新
     def update
         
         product_data = params[:product]
@@ -98,6 +108,7 @@ class ProductController < ApplicationController
         
     end
     
+    # 商品を消す
     def delete
         
         product_id = params[:id]

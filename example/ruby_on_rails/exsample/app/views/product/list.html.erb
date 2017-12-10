@@ -17,6 +17,7 @@
         <td><%= product.description %></td>
         <td><%= product.price %></td>
         <td><a class="btn btn-default" href="/product/edit/<%= product.id %>" role="button">編集</a></td>
+        <td><button type="button" class="btn btn-default" role="button" data-product-id="<%= product.id %>">削除</button></td>
 
     </tr>
     <% end %>
